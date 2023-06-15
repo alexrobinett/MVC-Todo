@@ -4,29 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Todos</h1>
-    <ul>
-    <% todos.forEach( el => { %>
-            <li class='todoItem' data-id='<%=el._id%>'>
-                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-                <span class='del'> Delete </span>
-            </li>
-    <% }) %>    
-    </ul>
+    <div class="container">
+        <a href="/logout" class="logout-button">Logout</a>
+        <h1>Todos</h1>
+        <ul class="todos">
+            <% todos.forEach( el => { %>
+                <li class='<%= el.completed === true ? "todoItem completed" : "todoItem"%>' data-id='<%=el._id%>'>
+                    <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                    <button class='check-button <%= el.completed === true ? "completed-btn" : "not"%> '><%= el.completed === true ? 'completed' : 'Not Done'%></button> 
+                    <span class='del-button'> Delete </span>
+                </li>
+            <% }) %>    
+        </ul>
 
-    <h2><%= user.userName %> has <%= left %> things left to do.</h2>
+        <h2><%= user.userName %> has <%= left %> things left to do.</h2>
 
-    <form action="/todos/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
-    </form>
+        <form action="/todos/createTodo" method='POST'>
+            <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+            <input type="submit" class="submit-button">
+        </form>
+    </div>
 
-    <a href="/logout">Logout</a>
-
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 </html>
