@@ -12,7 +12,18 @@ const TodoSchema = new mongoose.Schema({
   userId: {
     type: String,
     required: true
+  },
+  date:{
+    type: Date,
+    default: Date.now()
+  },
+  priority:{
+    type: String,
+    default: "low"
   }
-})
+
+},
+{ timestamps: { createdAt: 'created_at' } }
+)
 
 module.exports = mongoose.model('Todo', TodoSchema)

@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    <nav><a href="/logout" class="logout-button">Logout</a></nav>
     <div class="container">
-        <a href="/logout" class="logout-button">Logout</a>
+        
         <h1>Todos</h1>
         <ul class="todos">
             <% todos.forEach( el => { %>
                 <li class='<%= el.completed === true ? "todoItem completed" : "todoItem"%>' data-id='<%=el._id%>'>
                     <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                    <span>priority: <%= el.priority %></span>
                     <button class='check-button <%= el.completed === true ? "completed-btn" : "not"%> '><%= el.completed === true ? 'completed' : 'Not Done'%></button> 
                     <span class='del-button'> Delete </span>
                 </li>
@@ -25,6 +27,11 @@
 
         <form action="/todos/createTodo" method='POST'>
             <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+            <select id="priority" name="priority">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </select>
             <input type="submit" class="submit-button">
         </form>
     </div>
